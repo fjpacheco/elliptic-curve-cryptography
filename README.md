@@ -65,11 +65,29 @@ Esto se hace tanto para el generador $G_1$ y $G_2$. La principal diferencia de u
 
 Para ambos casos, son susceptibles a ataques puesto que $G_1$ tiene un orden primo, pero muy chico. Con $G_2$ tiene un orden mayor, pero no es primo. Si nos basamos en la cantidad de puntos del grupo, $G_1$ seria mas rapido de romper resolviendo el problema del logaritmo discreto.
 
+Para ejecutar el caso con $G_1$:
+
+```
+cargo test --package tp1 --lib -- agreement::tests::test_01_ejercicio3_g1 --exact --nocapture 
+```
+
+Para ejecutar el caso con $G_2$:
+
+```
+cargo test --package tp1 --lib -- agreement::tests::test_02_ejercicio3_g2 --exact --nocapture 
+```
+
 ## Item 4
 
 > Considerar la curva $y^2=x^3+905x+100$ definida sobre el cuerpo primo de orden $1021$ y el punto generador $(1006, 416)$. Desarrollar alguna estrategia que permita resolver el problema del logaritmo discreto $kP=(612, 827)$.
 
 La resolución de este ítem se encuentra en el módulo de tests del archivo [**Discrete Logarithm Problem**](src/elliptic_curve/discrete_logarithm_problem.rs). Se implementaron dos algoritmos, uno por fuerza bruta y otro por Baby Step Giant Step. Ahí se calcula el valor de k, como también se calcula el valor de kP para verificar que sea igual al punto dado. Adicionalmente se muestra el tiempo de ejecución de cada algoritmo donde se puede ver que el algoritmo de Baby Step Giant Step es mucho más rápido que el de fuerza bruta. Aun así es un problema que para curvas elípticas con un orden de grupo muy grande, no es posible resolverlo en un tiempo razonable.
+
+Para ejecutar este ejercicio:
+
+```
+cargo test --package tp1 --lib -- elliptic_curve::discrete_logarithm_problem::test_algorithms_dlp --nocapture 
+```
 
 ## Referencias y Recursos utilizados
 
