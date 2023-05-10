@@ -103,7 +103,7 @@ mod tests {
         let private_key_alice = rand::thread_rng().gen_range(1..agreement_g1.order_g());
         // ALICE Enviara por internet la clave publica
         let public_key_alice = agreement_g1.generate_public_key(private_key_alice);
-        
+
         // BOB
         let private_key_bob = rand::thread_rng().gen_range(1..agreement_g1.order_g());
         // BOB Enviara por internet la clave publica

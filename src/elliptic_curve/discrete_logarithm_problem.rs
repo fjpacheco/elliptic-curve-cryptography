@@ -6,7 +6,7 @@ use super::point_elliptic_curve::PointEllipticCurve;
 
 pub struct AlgorithmsDLP;
 
-impl AlgorithmsDLP{
+impl AlgorithmsDLP {
     // https://andrea.corbellini.name/2015/06/08/elliptic-curve-cryptography-breaking-security-and-a-comparison-with-rsa/
     pub fn bsgs(
         p: i32,
@@ -40,9 +40,9 @@ impl AlgorithmsDLP{
     }
 
     pub fn brute_force(
-        p: i32,
-        a: FiniteBody<i32>,
-        b: FiniteBody<i32>,
+        _p: i32,
+        _a: FiniteBody<i32>,
+        _b: FiniteBody<i32>,
         g: PointEllipticCurve<FiniteBody<i32>>,
         k_g: PointEllipticCurve<FiniteBody<i32>>,
     ) -> i32 {
@@ -64,7 +64,7 @@ mod test_algorithms_dlp {
     use std::time::Instant;
 
     use super::*;
-    
+
     #[test]
     fn test1_ejercicio4() {
         let p = 1021;
@@ -72,9 +72,9 @@ mod test_algorithms_dlp {
         let b: FiniteBody<i32> = FiniteBody::new(p, 100);
         let g = PointEllipticCurve::new(FiniteBody::new(p, 1006), FiniteBody::new(p, 416), a, b)
             .unwrap();
-    
-        let k_g =
-            PointEllipticCurve::new(FiniteBody::new(p, 612), FiniteBody::new(p, 827), a, b).unwrap();
+
+        let k_g = PointEllipticCurve::new(FiniteBody::new(p, 612), FiniteBody::new(p, 827), a, b)
+            .unwrap();
 
         println!(
             "Punto G: (x: {:?}, y: {:?})",
@@ -83,13 +83,16 @@ mod test_algorithms_dlp {
         );
         println!("y**2=x**3+905x+100");
         println!("p: {:?}", p);
-        println!("k * G =  (x: {:?}, y: {:?})", k_g.x.unwrap().as_value(), k_g.y.unwrap().as_value());
+        println!(
+            "k * G =  (x: {:?}, y: {:?})",
+            k_g.x.unwrap().as_value(),
+            k_g.y.unwrap().as_value()
+        );
 
         let now_brute_force = Instant::now();
         let k_brute_force = AlgorithmsDLP::brute_force(p, a, b, g, k_g);
         let res_brute_force = g * k_brute_force as usize;
         let time_brute_force = now_brute_force.elapsed().as_millis();
-
 
         let now_bsgs = Instant::now();
         let k_bsgs = AlgorithmsDLP::bsgs(p, a, b, g, k_g);

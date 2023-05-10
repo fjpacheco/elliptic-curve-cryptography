@@ -1,7 +1,5 @@
-use std::cmp::{Ordering, PartialEq};
-use std::ops::{Add, Div, Mul, Neg, Rem, Sub};
+use std::ops::{Add, Div, Neg, Rem, Sub};
 
-use num::traits::Pow;
 use num::{One, Zero};
 
 #[derive(Copy, Clone, Debug, Hash)]

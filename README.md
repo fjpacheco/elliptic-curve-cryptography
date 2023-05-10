@@ -1,15 +1,21 @@
 # TP1: Criptografía Práctica y Blockchain
 
-Trabajo práctico número 1 de la materia Criptografía Práctica y Blockchain de la Facultad de Ingeniería de la Universidad de Buenos Aires.
+TP1 de la materia Criptografía Práctica y Blockchain de la Facultad de Ingeniería de la Universidad de Buenos Aires.
 
 ## Autor del trabajo práctico
 | Nombre y Apellido | Padron | Mail |
 |-------------------|--------|------|
 | Federico Jose Pacheco | 104541 | fpacheco@fi.uba.ar |
 
+## Ejecucion de tests
+
+Se implementó en el lenguaje Rust. Para ejecutar los tests se debe ejecutar el siguiente comando:
+
+```
+cargo test
+```
 
 ## Item 1
-
 
 > Implementar un tipo de dato para un elemento de cuerpo finito, junto con sus operaciones aritméticas fundamentales (adición, sustracción, multiplicación y división).
 
@@ -63,9 +69,7 @@ Para ambos casos, son susceptibles a ataques puesto que $G_1$ tiene un orden pri
 
 > Considerar la curva $y^2=x^3+905x+100$ definida sobre el cuerpo primo de orden $1021$ y el punto generador $(1006, 416)$. Desarrollar alguna estrategia que permita resolver el problema del logaritmo discreto $kP=(612, 827)$.
 
-
 La resolución de este ítem se encuentra en el módulo de tests del archivo [**Discrete Logarithm Problem**](src/elliptic_curve/discrete_logarithm_problem.rs). Se implementaron dos algoritmos, uno por fuerza bruta y otro por Baby Step Giant Step. Ahí se calcula el valor de k, como también se calcula el valor de kP para verificar que sea igual al punto dado. Adicionalmente se muestra el tiempo de ejecución de cada algoritmo donde se puede ver que el algoritmo de Baby Step Giant Step es mucho más rápido que el de fuerza bruta. Aun así es un problema que para curvas elípticas con un orden de grupo muy grande, no es posible resolverlo en un tiempo razonable.
-
 
 ## Referencias y Recursos utilizados
 

@@ -1,7 +1,5 @@
-use std::cmp::{Ordering, PartialEq};
 use std::ops::{Add, Div, Mul, Neg, Rem, Sub};
 
-use num::traits::Pow;
 use num::{One, Zero};
 
 use super::finite_body::FiniteBody;
@@ -50,8 +48,5 @@ mod tests {
 
         assert_eq!((FiniteBody::new(p, 5) / FiniteBody::new(p, 3)), 4);
         assert_eq!((FiniteBody::new(p, 0) / FiniteBody::new(p, 5)), 0);
-
     }
-
-
 }

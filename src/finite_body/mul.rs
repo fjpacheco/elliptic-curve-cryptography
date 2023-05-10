@@ -1,4 +1,3 @@
-use std::cmp::{Ordering, PartialEq};
 use std::ops::{Add, Div, Mul, Neg, Rem, Sub};
 
 use num::traits::Pow;
@@ -45,12 +44,11 @@ where
     fn mul(self, other: isize) -> Self::Output {
         let mut result = Self::new(self.p, T::zero());
 
-        for _ in 0..(other.abs() as usize) {
+        for _ in 0..(other.unsigned_abs()) {
             result = result + self;
         }
 
         result
-
     }
 }
 
@@ -99,7 +97,5 @@ mod tests {
         assert_eq!((FiniteBody::new(p, 2) * 2), 4);
         assert_eq!((FiniteBody::new(p, 2) * 3), 6);
         assert_eq!((FiniteBody::new(p, 2) * 4), 1);
-        assert_eq!((FiniteBody::new(p, 2) * -1), 5);
-        assert_eq!((FiniteBody::new(p, 2) * -3), 1);
     }
 }

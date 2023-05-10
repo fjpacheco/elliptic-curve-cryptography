@@ -131,12 +131,10 @@ impl<T> Eq for FiniteBody<T> where
 {
 }
 
-
 #[cfg(test)]
-mod test_others{
+mod test_others {
     use crate::finite_body::finite_body::FiniteBody;
 
-   
     #[test]
     fn test_01_neg() {
         let p = 7.0;
@@ -188,5 +186,4 @@ mod test_others{
 
         assert_eq!(FiniteBody::new(1021, -3), 1018);
     }
-
 }

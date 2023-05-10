@@ -118,12 +118,12 @@ where
 
     /// Multiplicacion de un escalar entero usize por un punto de la curva eliptica. Esta operacion era necesaria
     /// para calcular la multiplicacion por 2 o por 3 en la formulas del ADD de los puntos de la curva eliptica.
-    /// 
+    ///
     /// Por ejemplo:
     /// (-1, -1) + (-1, -1) = 2 * (-1, -1)
     /// ```
-    /// use tp1::eliptic_curve::point_eliptic_curve::PointElipticCurve;
-    /// let p = PointElipticCurve::new(-1, -1, 5, 7).unwrap();
+    /// use tp1::elliptic_curve::point_elliptic_curve::PointEllipticCurve;
+    /// let p = PointEllipticCurve::new(-1, -1, 5, 7).unwrap();
     /// let p2 = p * 2;
     /// assert_eq!(p2, (p + p).unwrap());
     /// let p3 = p * 3;
@@ -176,9 +176,9 @@ where
         match (self.x, self.y) {
             (None, None) => self.a == *a && self.b == *b,
             (Some(self_x), Some(self_y)) => {
-                return self_x == *x && self_y == *y && self.a == *a && self.b == *b
+                self_x == *x && self_y == *y && self.a == *a && self.b == *b
             }
-            _ => return false,
+            _ => false,
         }
     }
 }
@@ -196,8 +196,8 @@ where
     fn eq(&self, (x, y): &(T, T)) -> bool {
         match (self.x, self.y) {
             (None, None) => false,
-            (Some(self_x), Some(self_y)) => return self_x == *x && self_y == *y,
-            _ => return false,
+            (Some(self_x), Some(self_y)) => self_x == *x && self_y == *y,
+            _ => false,
         }
     }
 }
@@ -211,11 +211,8 @@ where
     }
 }
 
-
 #[cfg(test)]
 mod test_points_eliptic_curve {
-    use std::{collections::HashMap, time::Instant};
-
     use crate::finite_body::finite_body::FiniteBody;
 
     use super::*;
